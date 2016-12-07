@@ -15,6 +15,7 @@ typedef struct person
 
 }person;
 
+
 //typedef struct listItem
 //{
 //   char name[256];
@@ -240,8 +241,7 @@ int main(int argc, char** argv)
 {
 
     char buffer[1024]="";
-    //char args[5][256];
-    //args[0][0] = ' ';
+
 
     FILE *fp;
      fp= fopen("FamilyTree.dot", "w");
