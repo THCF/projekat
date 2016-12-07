@@ -17,9 +17,20 @@ typedef struct listItem
 
 }listItem;
 
-void writeFile(person root)
-{
+/*
+	
+ 
+ */
 
+
+void writeFile(person root, FILE *fp)
+{	
+
+	
+	fprintf(fp, "%s  [%s] ->  %s  [%s]", root.name, root.sex, root.father->name, root.father->sex);
+	writeFile(*root.father, fp);
+	fprintf(fp, "%s  [%s] ->  %s [%s]", root.name, root.sex, root.mother->name, root.mother->sex);
+	writeFile(*root.mother, fp);
 }
 int eval(char* str)
 {
@@ -33,6 +44,20 @@ int main(int argc, char** argv)
     char args[5][256];
     args[0][0] = ' ';
     char* pch;
+    FILE *fp;
+     fp= fopen("FamilyTree.dot", "w");
+    person child;
+    person father;
+    person mother;
+    strcpy(child.name, "Otto");
+    strcpy(child.sex,  "m");
+    strcpy(father.name, "FOtti");
+    strcpy(father.sex, "m");
+   strcpy(mother.name, "MOtto");
+   strcpy(mother.sex, "f");
+    child.father = &father;
+    child.mother = &mother;
+	writeFile(child, fp);
 
     while(1)
     {
