@@ -54,6 +54,7 @@ void messageControl(int code)
         case DRAWA3:
             printf("[ERR] Could not write file.\n");
             break;
+
     }
 
 }
@@ -72,7 +73,7 @@ int eval(char* str, person *persons[2])
     char command[10];
 
     pch = strtok (str," ");
-    char arrayBuffer[10][256];
+    //char arrayBuffer[10][256];
     persons[0] = malloc(sizeof(person));
     persons[1] = malloc(sizeof(person));
     strcpy(command,pch);
@@ -152,7 +153,7 @@ int eval(char* str, person *persons[2])
         printf("----\n");
         printf("%s\n", persons[1]->name);
         printf("%s\n", persons[1]->sex);
-        if(relation == mother)
+        //if(relation == mother)
 
 
 
@@ -180,9 +181,9 @@ int eval(char* str, person *persons[2])
         //}
         //seekedNode = rundownTree(..., "name","sex")
 
-        person *newPerson = malloc(sizeof(Person));
-        strcpy(newPerson->name, name)
-        seekedNode.father = newPerson;
+        //person *newPerson = malloc(sizeof(Person));
+        //strcpy(newPerson->name, name)
+        //seekedNode.father = newPerson;
         return ADD;
 
     }else if(!strcmp(command, "draw"))
@@ -199,7 +200,7 @@ int eval(char* str, person *persons[2])
 
     }else if(!strcmp(command, "quit"))
     {
-
+        return QUIT;
     }else if(!strcmp(command, "EOF"))
     {
 
@@ -239,8 +240,8 @@ int main(int argc, char** argv)
 {
 
     char buffer[1024]="";
-    char args[5][256];
-    args[0][0] = ' ';
+    //char args[5][256];
+    //args[0][0] = ' ';
 
     FILE *fp;
      fp= fopen("FamilyTree.dot", "w");
@@ -270,16 +271,10 @@ int main(int argc, char** argv)
         scanf("%[^\t\n]", buffer);
         code = eval(buffer,persons);
         messageControl(code);
-        if(code == ADD)
+        if(code == QUIT)
         {
-
-        }
-        if (!strcmp(args[1], "add"))
-        {
-
-        }
-        else if(!strcmp(args[1], "quit"))
             break;
+        }
         getchar();
     }
     return 0;
